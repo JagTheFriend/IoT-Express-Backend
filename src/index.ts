@@ -1,5 +1,6 @@
 import bodyParser from "body-parser";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
+import { newUser } from "./routes/user";
 
 const app = express();
 
@@ -9,7 +10,16 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.post("/user/new", (req, res) => {});
+app.post("/user/new", newUser);
+
+// Error handling middleware to catch all errors
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  if (err) {
+    res.status(500).json({ message: "Internal Server Error" });
+  } else {
+    next();
+  }
+});
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
