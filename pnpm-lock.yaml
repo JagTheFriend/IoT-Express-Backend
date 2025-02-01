@@ -11,6 +11,9 @@ importers:
       '@prisma/client':
         specifier: 6.3.0
         version: 6.3.0(prisma@6.3.0(typescript@5.7.3))(typescript@5.7.3)
+      body-parser:
+        specifier: ^1.20.3
+        version: 1.20.3
       express:
         specifier: ^4.21.2
         version: 4.21.2
@@ -20,7 +23,13 @@ importers:
       tsx:
         specifier: ^4.19.2
         version: 4.19.2
+      zod:
+        specifier: ^3.24.1
+        version: 3.24.1
     devDependencies:
+      '@types/body-parser':
+        specifier: ^1.19.5
+        version: 1.19.5
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.0
@@ -544,6 +553,9 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
+  zod@3.24.1:
+    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
+
 snapshots:
 
   '@esbuild/aix-ppc64@0.23.1':
@@ -1043,3 +1055,5 @@ snapshots:
   utils-merge@1.0.1: {}
 
   vary@1.1.2: {}
+
+  zod@3.24.1: {}
