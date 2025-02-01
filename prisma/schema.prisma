@@ -12,3 +12,30 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id String @id @default(cuid())
+
+  email       String @unique
+  password    String
+  phoneNumber String @unique
+
+  username  String @unique
+  firstName String
+  lastName  String
+
+  dateOfBirth           String
+  walletPrimaryCurrency String
+
+  nationality String
+  address     String
+
+  accountType  String
+  businessName String?
+  businessType String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id, email, username])
+}
