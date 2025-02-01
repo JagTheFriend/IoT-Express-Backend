@@ -37,5 +37,24 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  card Card[]
+
   @@index([id, email, username])
+}
+
+model Card {
+  id String @id @default(cuid())
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
+
+  cardHolderName String
+  cardNumber     String
+  validTill      DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id, authorId])
+  @@index([id, cardNumber])
 }
