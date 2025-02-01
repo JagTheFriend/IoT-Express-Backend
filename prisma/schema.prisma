@@ -58,3 +58,19 @@ model Card {
   @@index([id, authorId])
   @@index([id, cardNumber])
 }
+
+model Transaction {
+  id String @id @default(cuid())
+
+  senderId   String
+  receiverId String
+
+  amount   Int
+  currency String
+  status   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id, senderId, receiverId])
+}
