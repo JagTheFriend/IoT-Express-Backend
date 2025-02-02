@@ -1,6 +1,6 @@
 import bodyParser from "body-parser";
 import express, { NextFunction, Request, Response } from "express";
-import { deleteUser, getUser, newUser } from "./routes/user";
+import { deleteUser, getUser, newUser, updateUser } from "./routes/user";
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 
 app.post("/user/new", newUser);
 app.get("/user", getUser);
-app.post("/user/delete", deleteUser);
+app.post("/user/edit", updateUser);
 app.delete("/user", deleteUser);
 
 // Error handling middleware to catch all errors
