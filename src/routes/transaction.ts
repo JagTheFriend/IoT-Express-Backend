@@ -29,7 +29,7 @@ export async function newTransaction(req: Request, res: Response) {
       },
     });
 
-    if (!users) {
+    if (!users.length) {
       res.status(400).json({ message: "User Not Found" });
       return;
     }
