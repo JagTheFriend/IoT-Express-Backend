@@ -1,0 +1,30 @@
+@base = http://localhost:3000
+
+
+### New Card
+POST {{base}}/card/new
+Content-Type: application/json
+
+{
+  "authorId": "cm6n5wowy0000fkucb5rei5yg",
+  "cardHolderName": "test",
+  "cardNumber": "1234567890123456",
+  "validTill": "{{$datetime iso8601}}"
+}
+
+### Get Card
+GET {{base}}/card?id=cm6n6d3i10005fk4wmictvofy
+
+### Update Card
+POST {{base}}/card/edit?id=cm6n6d3i10005fk4wmictvofy
+Content-Type: application/json
+
+{
+  "authorId": "cm6n5xigr0005fkuchsdjszcy",
+  "cardHolderName": "test",
+  "cardNumber": "1234567890121313",
+  "validTill": "{{$datetime iso8601}}"
+}
+
+### Delete Card
+DELETE {{base}}/card?id=cm6n6d3i10005fk4wmictvofy
