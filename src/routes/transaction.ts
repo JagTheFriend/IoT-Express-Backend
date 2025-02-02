@@ -73,7 +73,7 @@ export async function updateTransaction(req: Request, res: Response) {
   }
 
   try {
-    const transaction = await db.transaction.update({
+    await db.transaction.update({
       where: {
         id: req.query.id as string,
       },
