@@ -3,7 +3,7 @@ import { z } from "zod";
 import { db } from "../db";
 
 export const userRegistrationSchema = z.object({
-  id: z.string(),
+  id: z.string().optional(),
 
   email: z.string(),
   password: z.string(),
@@ -32,10 +32,14 @@ export async function newUser(req: Request, res: Response) {
     return;
   }
 
-  await db.user.create({
-    data: parsedBody.data,
-  });
-  res.status(201).json({ message: "User Created" });
+  try {
+    await db.user.create({
+      data: parsedBody.data,
+    });
+    res.status(201).json({ message: "User Created" });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 }
 
 export async function getUser(req: Request, res: Response) {
