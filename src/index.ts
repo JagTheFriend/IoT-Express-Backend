@@ -12,6 +12,7 @@ app.get("/", (req, res) => {
 
 app.post("/user/new", newUser);
 app.get("/user", getUser);
+app.post("/user/delete", deleteUser);
 app.delete("/user", deleteUser);
 
 // Error handling middleware to catch all errors
