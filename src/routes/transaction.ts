@@ -7,7 +7,6 @@ const newTransactionSchema = z.object({
   currency: z.string(),
   receiverId: z.string(),
   senderId: z.string(),
-  status: z.string(),
   description: z.string().optional(),
 });
 
@@ -22,7 +21,7 @@ export async function newTransaction(req: Request, res: Response) {
   try {
     const users = await db.user.findMany({
       where: {
-        AND: [
+        OR: [
           { id: parsedBody.data.receiverId },
           { id: parsedBody.data.senderId },
         ],
@@ -35,7 +34,7 @@ export async function newTransaction(req: Request, res: Response) {
     }
 
     await db.transaction.create({
-      data: parsedBody.data,
+      data: { ...parsedBody.data, status: "pending" },
     });
     res.status(201).json({ message: "Transaction Created" });
   } catch (error) {
@@ -47,7 +46,7 @@ export async function getTransaction(req: Request, res: Response) {
   try {
     const transaction = await db.transaction.findUnique({
       where: {
-        id: req.params.id,
+        id: req.query.id,
       },
     });
 
@@ -76,11 +75,13 @@ export async function updateTransaction(req: Request, res: Response) {
   try {
     const transaction = await db.transaction.update({
       where: {
-        id: req.params.id,
+        id: req.query.id as string,
       },
-      data: parsedBody.data,
+      data: {
+        description: parsedBody.data.description,
+      },
     });
-    res.status(200).json(transaction);
+    res.status(200).json({ message: "Transaction Updated" });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }
