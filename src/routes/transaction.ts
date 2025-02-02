@@ -46,7 +46,7 @@ export async function getTransaction(req: Request, res: Response) {
   try {
     const transaction = await db.transaction.findUnique({
       where: {
-        id: req.query.id,
+        id: req.query.id as string,
       },
     });
 

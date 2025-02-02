@@ -1,0 +1,25 @@
+@host = http://localhost:3000
+
+### New Transaction
+POST {{host}}/transaction/new
+Content-Type: application/json
+
+{
+  "amount": 100,
+  "currency": "USD",
+  "receiverId": "cm6n5wowy0000fkucb5rei5yg",
+  "senderId": "cm6n5xigr0005fkuchsdjszcy",
+  "description": "test"
+}
+
+### Get Transaction
+GET {{host}}/transaction?id=cm6n5zq1i0000fk6olhaggddk
+
+### Update Transaction
+POST {{host}}/transaction/edit?id=cm6n5zq1i0000fk6olhaggddk
+Content-Type: application/json
+
+{
+  "description": "new description"
+}
+
