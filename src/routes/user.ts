@@ -129,7 +129,7 @@ export async function updateUser(req: Request, res: Response) {
 }
 
 export async function deleteUser(req: Request, res: Response) {
-  const user = await db.user.delete({
+  const user = await db.user.findFirst({
     where: {
       id: req.query.id as string,
     },
@@ -139,6 +139,12 @@ export async function deleteUser(req: Request, res: Response) {
     res.status(404).json({ message: "User Not Found" });
     return;
   }
+
+  await db.user.delete({
+    where: {
+      id: req.query.id as string,
+    },
+  });
 
   res.status(200).json({ message: "User Deleted" });
 }
