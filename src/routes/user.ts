@@ -41,7 +41,7 @@ export async function newUser(req: Request, res: Response) {
 export async function getUser(req: Request, res: Response) {
   const user = await db.user.findFirst({
     where: {
-      id: req.params.id,
+      id: req.query.id as string,
     },
     include: {
       card: {},
@@ -54,4 +54,19 @@ export async function getUser(req: Request, res: Response) {
   }
 
   res.status(200).json(user);
+}
+
+export async function deleteUser(req: Request, res: Response) {
+  const user = await db.user.delete({
+    where: {
+      id: req.query.id as string,
+    },
+  });
+
+  if (!user) {
+    res.status(404).json({ message: "User Not Found" });
+    return;
+  }
+
+  res.status(200).json({ message: "User Deleted" });
 }
