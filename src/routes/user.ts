@@ -84,7 +84,18 @@ export async function updateUser(req: Request, res: Response) {
     return;
   }
 
-  const user = await db.user.update({
+  const user = await db.user.findFirst({
+    where: {
+      id: req.query.id as string,
+    },
+  });
+
+  if (!user) {
+    res.status(404).json({ message: "User Not Found" });
+    return;
+  }
+
+  await db.user.update({
     where: {
       id: req.query.id as string,
     },
