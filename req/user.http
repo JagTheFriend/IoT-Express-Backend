@@ -1,0 +1,37 @@
+@host = http://localhost:3000
+
+### New User
+POST {{host}}/user/new
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "test",
+  "phoneNumber": "1234567890",
+  "username": "test",
+  "firstName": "test",
+  "lastName": "test",
+  "dateOfBirth": "1990-01-01",
+  "walletPrimaryCurrency": "USD",
+  "nationality": "US",
+  "address": "123 Main St",
+  "accountType": "personal"
+}
+
+
+### Get user
+GET {{host}}/user?id=cm6n3aere0001fkrguma2ec39
+
+### Update user
+POST {{host}}/user/edit?id=cm6n3aere0001fkrguma2ec39
+Content-Type: application/json
+
+{
+  "email": "EMAIL",
+  "password": "testpassword",
+  "phoneNumber": "1234567890"
+}
+
+
+### Delete user
+DELETE {{host}}/user?id=cm6n3aere0001fkrguma2ec39
