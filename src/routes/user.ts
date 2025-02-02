@@ -124,11 +124,6 @@ export async function updateUser(req: Request, res: Response) {
     },
   });
 
-  if (!user) {
-    res.status(404).json({ message: "User Not Found" });
-    return;
-  }
-
   res.status(200).json({ message: "User Updated" });
 }
 
