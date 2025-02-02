@@ -69,6 +69,8 @@ model Transaction {
   currency String
   status   String
 
+  description String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
