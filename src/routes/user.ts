@@ -37,3 +37,21 @@ export async function newUser(req: Request, res: Response) {
   });
   res.status(201).json({ message: "User Created" });
 }
+
+export async function getUser(req: Request, res: Response) {
+  const user = await db.user.findFirst({
+    where: {
+      id: req.params.id,
+    },
+    include: {
+      card: {},
+    },
+  });
+
+  if (!user) {
+    res.status(404).json({ message: "User Not Found" });
+    return;
+  }
+
+  res.status(200).json(user);
+}
