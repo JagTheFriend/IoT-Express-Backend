@@ -4,8 +4,8 @@
   "description": "The goal is to understand how backend systems work and get hands-on experience.",
   "main": "index.js",
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "tsx watch src/index.ts",
-    "build": "tsx build src/index.ts",
     "db:push": "prisma db push",
     "db:studio": "prisma studio"
   },
