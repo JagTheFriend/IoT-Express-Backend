@@ -81,11 +81,6 @@ export async function updateCard(req: Request, res: Response) {
     },
   });
 
-  if (!card) {
-    res.status(404).json({ message: "Card Not Found" });
-    return;
-  }
-
   res.status(200).json({ message: "Card Updated" });
 }
 
