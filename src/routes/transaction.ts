@@ -21,7 +21,7 @@ export async function newTransaction(req: Request, res: Response) {
   try {
     const users = await db.user.findMany({
       where: {
-        OR: [
+        AND: [
           { id: parsedBody.data.receiverId },
           { id: parsedBody.data.senderId },
         ],
